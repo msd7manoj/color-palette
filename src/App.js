@@ -7,11 +7,9 @@ import { PALETTE_COLORS } from './constants/palettesColor';
 function App() {
 
   const [state, setstate] = useState([])
-  const [gridCount, setGridCount] = useState(12)
 
   const changeView = (type) => (e) => {
     e.preventDefault()
-    setGridCount(type === 'list' ? 12 : 4 )
   }
   useEffect(() => {
     setstate(() => {
@@ -43,9 +41,14 @@ function App() {
               <Col md={9}>
                 <div className="dFlex justify-end">
                   <div className="dFlex">
-                    <button className="appButton appButton-bg">
+                    <button className="appButton appButton-md">
                       Create Palette
                     </button>
+                    <a className="appMenuIcon" href="/">
+                      {/* <i class="fas fa-bars"></i> */}
+                      <i class="fas fa-ellipsis-v"></i>
+                      {/* <i class="lni lni-menu"></i> */}
+                    </a>
                     <span className="divider"></span>
                     <div className="loginWrap">
                       <a href="/">
@@ -64,26 +67,16 @@ function App() {
       </Row>
 
       <div className="mainLayout">
-        <Row middle="md" className="mb-2" between="md">
-          <Col md={6}>
+        <Row middle="md" className="mb-2" center="md">
+          <Col md={12}>
             <h1>Explore Palettes</h1>
-          </Col>
-          <Col md={6}>
-            <div className="dFlex justify-end">
-              <a onClick={changeView('list')} className="iconLink active" title="List View" href="#">
-                <i class="fas fa-th-list"></i>
-              </a>
-              <a onClick={changeView('grid')} className="iconLink" title="Grid View" href="#">
-                <i class="fas fa-th"></i>
-              </a>
-            </div>
           </Col>
         </Row>
           
         <Row center="md">
           <Col md={12}>
             <Row between="md" className="mb-2">
-              <Col md={4}>
+              <Col md={3}>
                 <div className="colorSearchInput">
                   <input placeholder="Search Colors (Hex Codes or Color Name)" type="text" />
                   <span>
@@ -102,70 +95,13 @@ function App() {
               </Col>
             </Row>
           </Col>
-          {/* { state.map( el => {
-              return (
-                <Col key={el.likes} md={12}>
-                  <div className="paletteWrp">
-                    <Row end="md" middle="md" className="mb-1">
-                      
-                      <Col md={4}>
-                        <div className="dFlex justify-end">
-                          <a title="Export Palette" className="iconLink" href="/">
-                            <i class="fas fa-file-export"></i>
-                          </a>
-                          <a title="Copy All" className="iconLink" href="/">
-                            <i class="far fa-copy"></i>
-                          </a>
-                          <a title="Edit Palette" className="iconLink" href="/">
-                            <i class="fas fa-palette"></i>
-                          </a>
-                          <a title="View Palette" className="iconLink" href="/">
-                            <i class="fas fa-swatchbook"></i>
-                          </a>
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row className="mb-1">
-                      <Col md={12}>
-                        <ul className="paletteList">
-                          {el.palettes.map( palette => {
-                            return (
-                              <li key={palette} style={{background: `#${palette}`}}>
-                                <span className="colorToolTip">{palette}</span>
-                              </li>
-                            )
-                          })} 
-                        </ul>
-                      </Col>
-                    </Row>
-                    <Row className="paletteAction" between="md">
-                      <Col md={3}>
-                        <a className="active" href="/">
-                          <i className="far fa-heart"></i>
-                        </a>
-                      </Col>
-                      <Col md={4} className="dFlex justify-end">
-                        <span className="dFlex likePalette">
-                          <a className="active" href="/">
-                            <i className="far fa-thumbs-up"></i>
-                          </a>
-                          {el.likes}
-                        </span>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              )
-            })
-          } */}
-
 
           { state.map( el => {
               return (
-                <Col key={el.likes} className="mb-1" md={gridCount}>
+                <Col key={el.likes} className="mb-1" md={3}>
                   <div className="paletteWrp">
-                    <Row end="md" middle="md" className="mb-1">
-                      <Col md={4}>
+                    <Row end="md" middle="md" className="mb-xs">
+                      <Col md={12}>
                         <div className="dFlex justify-end">
                           <a title="Export Palette" className="iconLink" href="/">
                             <i class="fas fa-file-export"></i>
@@ -173,7 +109,7 @@ function App() {
                           <a title="Copy All" className="iconLink" href="/">
                             <i class="far fa-copy"></i>
                           </a>
-                          <a title="Edit Palette" className="iconLink" href="/">
+                          <a title="Open Palette" className="iconLink" href="/">
                             <i class="fas fa-palette"></i>
                           </a>
                           <a title="View Palette" className="iconLink" href="/">
@@ -188,7 +124,7 @@ function App() {
                           {el.palettes.map( palette => {
                             return (
                               <li key={palette} style={{background: `#${palette}`}}>
-                                <span className="colorToolTip">{palette}</span>
+                                {/* <span className="colorToolTip">{palette}</span> */}
                               </li>
                             )
                           })} 
