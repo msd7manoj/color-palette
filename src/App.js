@@ -42,6 +42,7 @@ function App() {
                 <h1 className="logo">
                   <a href="/">
                     {/* Palette */}
+                    Palettes Hunt
                   </a>
                 </h1>
               </Col>
@@ -84,7 +85,7 @@ function App() {
         <Row center="md">
           <Col md={12}>
             <Row between="md" className="mb-2">
-              <Col md={3}>
+              <Col md={4}>
                 <div className="colorSearchInput">
                   <input placeholder="Search Colors (Hex Codes or Color Name)" type="text" />
                   <span>
