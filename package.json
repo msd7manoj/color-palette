@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "jss": "^10.3.0",
     "node-sass": "^4.14.1",
+    "rc-drawer": "^4.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-flexbox-grid": "^2.1.2",
