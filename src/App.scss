@@ -14,6 +14,13 @@ header {
     a {
         letter-spacing: 10px;
         color: #000;
+        background-image: url('./assets/images/logo.png');
+        width: 245px;
+        height: 35px;
+        display: flex;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 

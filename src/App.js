@@ -41,7 +41,7 @@ function App() {
               <Col md={3}>
                 <h1 className="logo">
                   <a href="/">
-                    Palette
+                    {/* Palette */}
                   </a>
                 </h1>
               </Col>
