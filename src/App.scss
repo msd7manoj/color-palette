@@ -4,6 +4,9 @@ header {
     background: #fff;
     padding: 0.7rem 2rem;
     box-shadow: 0 0 20px -15px #656565;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 .logo {
     font-weight: 600;
@@ -20,6 +23,9 @@ header {
 }
 .justify-end {
     justify-content: flex-end;
+}
+.justify-between {
+    justify-content: space-between;
 }
 .appButton {
     border-radius: 3px;
@@ -76,11 +82,24 @@ a.appMenuIcon {
 
 .mainLayout {
     padding: 3rem 2rem;
+    margin-top: 65px;
     h1 {
         font-size: 2.5rem;
         font-weight: 700;
         text-transform: capitalize;
-
+        position: relative;
+        padding: 0.5rem;
+        &:after {
+            content: "";
+            position: absolute;
+            width: 65px;
+            height: 2px;
+            background: $primaryColor;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
     }
 }
 
@@ -101,7 +120,7 @@ a.appMenuIcon {
     span {
         position: absolute;
         right: 10px;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         top: 50%;
         transform: translateY(-50%);
         color: #969696;
@@ -120,6 +139,9 @@ a.appMenuIcon {
         color: #969696;
         &:focus {
             outline: none;
+        }
+        option {
+            padding: 1rem;
         }
     }
 }
@@ -156,18 +178,14 @@ body {
 
 
 .paletteWrp {
-    // border: 1px solid #ddd;
-    border-bottom: 0;
     padding: 1rem;
     transition: all linear 0.3s;
     background: #f9f9f9;
-    &.last-child {
-        // border-bottom: 1px solid #ddd;
-    }    
     .createdBy {
         i {
             margin-right: 4px;
         }
+        color: #000;
         font-style: italic;
         font-size: 0.8rem;
     }
@@ -221,18 +239,18 @@ body {
             }
             .colorToolTip {
                 position: absolute;
-                background: #000;
+                background: rgba(0, 0, 0, 0.8);
                 color: #fff;
                 padding: 3px 12px;
                 border-radius: 2px;
                 left: 50%;
-                transform: translateX(-50%);
-                bottom: 10px;
+                transform: translate(-50%, -50%);
+                top: 0;
                 opacity: 0;
                 transition: all linear 0.15s;
             }
             &:hover .colorToolTip {
-                bottom: -30px;
+                top: 50%;
                 opacity: 1;
             }
         }
@@ -264,5 +282,102 @@ body {
                 margin-right: 0.2rem;
             }
         }
+    }
+}
+
+.drawerGrid {
+    padding: 0;
+}
+.paletteDrawerHeader {
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        
+    }
+}
+.paletteTabWrp, .paletteTabContWrp {
+    padding: 0.8rem;
+}
+.drawerPaletteTab {
+    li {
+        flex-grow: 1;
+        height: 50px;
+        cursor: pointer;
+        position: relative;
+        &:first-child {
+            border-radius: 4px 0px 0px 4px;
+        }
+        &:last-child {
+            border-radius: 0px 4px 4px 0px;
+        }
+        span {
+            background: rgba(0,0,0,0.3);
+            width: 25px;
+            height: 25px;
+            color: #fff;
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+            line-height: 25px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: all linear 0.3s;
+        }
+        &:hover span,&.active span {
+            opacity: 1;
+        }
+    }
+}
+
+.paletteDrawerWrp {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.colorCodeLists {
+    li {
+        border-bottom: 1px solid #d8d8d8;
+        // background: whitesmoke;
+        padding: 0.9rem 0.5rem;
+        .code_rt {
+            text-align: right;
+        }
+        .colorCode {
+            h4 {
+                font-weight: 600;
+                margin-bottom: 0.4rem;
+                color: #676767;
+            }
+            h3 {
+                color: #000;
+                font-size: 0.9rem;
+                a {
+                    margin-left: 0.4rem;
+                    font-size: 0.8rem;
+                    color: #777;
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    
+}
+.paletteNav {
+    padding: 0.5rem 1rem;
+    background: #e4e4e4;
+    margin-top: auto;
+    a {
+        margin: 0 0.2rem;
     }
 }
