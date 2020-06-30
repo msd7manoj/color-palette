@@ -6,7 +6,7 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={'/color-palette'}>
         <MainLayout />
       </BrowserRouter>
     </div>
