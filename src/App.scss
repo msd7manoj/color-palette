@@ -121,8 +121,11 @@ a.appMenuIcon {
         height: 40px;
         line-height: 40px;
         font-size: 1rem;
+        transition: all 0.30s ease-in-out;
         &:focus {
             outline: none;
+            box-shadow: 0 0 5px $primaryColor;
+            border: 1px solid $primaryColor;
         }
     }
     span {
@@ -275,9 +278,6 @@ body {
             justify-content: center;
             align-items: center;
             transition: all linear 0.3s;
-            // &.active {
-            //     color: $primaryColor;
-            // }
             &:hover {
                 background: #efefef;
             }
@@ -380,7 +380,6 @@ body {
             border-bottom: 0;
         }
     }
-    
 }
 .paletteNav {
     padding: 0.5rem 1rem;
