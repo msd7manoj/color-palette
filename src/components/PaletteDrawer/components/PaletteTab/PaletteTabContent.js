@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import useStyles from './styles';
 import globalStyles from '../../../../styles/globalStyle';
 import convert from 'color-convert';
-import { converColorCodes } from '../../../../utils/utils';
+import { converColorCodes, notification, copyText } from '../../../../utils/utils';
 
 
 const PaletteTabContent = ({ color }) => {
@@ -12,8 +12,13 @@ const PaletteTabContent = ({ color }) => {
 
     const classes = useStyles()
     const globalClasses = globalStyles()
+    
+    const copyToClipboard = (color) => (e) => {
+        e.preventDefault()
+        copyText(color)
+        notification(`Copied to Clipboard`, 'bottom-right')
+    }
 
-    console.log('color', color)
     useEffect(() => {
         if( color )
             setconvertColor([
@@ -37,9 +42,9 @@ const PaletteTabContent = ({ color }) => {
                     'cmyk': convert.hex.cmyk(color).join(', '),
                     'cmyk code': converColorCodes('cmyk', convert.hex.cmyk(`#${color}`) )
                 },
-                {
-                    'name': convert.hex.keyword(`#${color}`)
-                },
+                // {
+                //     'name': convert.hex.keyword(`#${color}`)
+                // },
             ])
     }, [color])
     
@@ -56,7 +61,7 @@ const PaletteTabContent = ({ color }) => {
                                             <h4>{code}</h4>
                                             <h3>
                                                 {color[code]}
-                                                <a href="/">
+                                                <a onClick={copyToClipboard(color[code])} href="/">
                                                     <i className="far fa-copy"></i>
                                                 </a>
                                             </h3>

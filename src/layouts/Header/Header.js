@@ -28,9 +28,9 @@ const Header = () => {
                 <div className={dFlexEnd}>
                   <div className={dFlex}>
                     <Button text={'Create Palette'} buttonSize={'md'} />
-                    <a className={appMenuIcon} href="/">
+                    <button className={appMenuIcon}>
                       <i className="fas fa-ellipsis-v"></i>
-                    </a>
+                    </button>
                     <span className={classes.divider}></span>
                     <div className={classes.loginWrap}>
                       <a href="/">

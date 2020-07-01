@@ -37,7 +37,8 @@ const useStyles = createUseStyles((theme) => {
             fontStyle: 'italic',
             fontSize: '0.8rem',
             fontWeight: 600
-        }
+        },
+        
     }
 })
   

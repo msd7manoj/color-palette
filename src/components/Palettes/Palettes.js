@@ -8,6 +8,9 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { palettesSelect } from '../../redux/palettesState/actions/action';
 import { openPaletteDrawer } from '../../redux/uiState/action/action';
+import { copyText, notification } from '../../utils/utils';
+
+
 
 const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
 
@@ -20,6 +23,12 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
       selectPalette(id)
     }
 
+    const copyAll = () => {
+      notification(`Copied to Clipboard`)
+      if(data.palettes.length > 0)
+        copyText(data.palettes.join('-'))
+    }
+
     return (
       <div className={classes.paletteWrp}>
         <Row end="md" middle="md" className={globalClasses['mb-xs']}>
@@ -28,7 +37,7 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
               <IconLink tooltip="Export Palette"> 
                 <i className="fas fa-file-export"></i>
               </IconLink>
-              <IconLink tooltip="Copy All"> 
+              <IconLink onClick={copyAll} tooltip="Copy All"> 
                 <i className="far fa-copy"></i>
               </IconLink>
               <IconLink tooltip="Open Palette"> 
@@ -68,6 +77,8 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
             </a>
           </Col>
         </Row>
+
+        
       </div>
     );
 }

@@ -1,16 +1,14 @@
 import React from 'react';
 import useStyles from './styles';
+import PaletteColor from './PaletteColor';
 
 const PaletteColors = ({ palettes }) => {
-
     const classes = useStyles()
     return ( 
         <ul className={classes.paletteList}>
             {palettes.map((palette) => {
             return (
-                    <li key={palette} style={{ background: `#${palette}` }}>
-                        <span className={classes.colorToolTip}>{palette}</span>
-                    </li>
+                    <PaletteColor palette={palette} key={palette} />
                 );
             })}
         </ul>

@@ -14,6 +14,9 @@ const globalStyles = createUseStyles((theme) => {
                 }
             }
         },
+        toastifyContainer: {
+            zIndex: 99999
+        },
         mainLayout:{
             padding: '3rem 2rem',
             marginTop: '65px',
@@ -23,6 +26,18 @@ const globalStyles = createUseStyles((theme) => {
                 textTransform: 'capitalize',
                 position: 'relative',
                 padding: '1rem',
+                '&:after': {
+                    content: '""',
+                    width: '65px',
+                    height: '2px',
+                    background: theme.primary.color,
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '0',
+                    right: '0',
+                    margin: 'auto',
+                },
+                
             }
         },
         appMenuIcon: {
@@ -33,6 +48,8 @@ const globalStyles = createUseStyles((theme) => {
             width: '40px',
             height: '40px',
             background: '#f9f9f9',
+            border: 0,
+            cursor: 'pointer',
             borderRadius: '50%',
             transition: 'all linear 0.3s',
             '&:hover': {

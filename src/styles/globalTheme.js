@@ -2,7 +2,8 @@ import { INPUT_HEIGHT } from "./styleConstant";
 
 export const globalTheme = {
     primary: {
-        color: '#ff7f50',
+        // color: '#ff7f50',
+        color: '#a11ad4',
         bgColor: '#fff'
     },
     secondary: {

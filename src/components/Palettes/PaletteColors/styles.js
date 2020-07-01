@@ -35,6 +35,20 @@ const useStyles = createUseStyles((theme) => {
             position: 'absolute',
             color: '#fff',
         },
+        colorCopied: {
+            position: 'absolute',
+            right: 15,
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            background: 'rgba(183, 226, 176, 0.25)',
+            padding: '0.2rem 0.4rem',
+            borderRadius: '2px',
+            opacity: 1,
+            color: '#000',
+            '& i': {
+                fontSize: '0.8rem'
+            }
+        },
         colorToolTip: {
             background: 'rgba(0, 0, 0, 0.8)',
             color: '#fff',

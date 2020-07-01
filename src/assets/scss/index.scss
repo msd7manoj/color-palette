@@ -46,3 +46,12 @@ Not supports in Firefox and IE */
 
 /* set button(top and bottom of the scrollbar) */
 .scrollBar::-webkit-scrollbar-button {display:none}
+
+body {
+
+    .toastifier {
+        min-height: 45px;
+        padding: 0.5rem 1rem;
+        border-radius: 3px;
+    }
+}
