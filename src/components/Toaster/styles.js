@@ -3,22 +3,16 @@ import {createUseStyles} from 'react-jss'
     
 const useStyles = createUseStyles((theme) => {
     return {
-        toasterWrp:{
-            color: '#91ff94'
-        },
-        // color: #4c0700;
-        // color: #ee8378;
-        // border: 0;
-        // cursor: pointer;
-        // padding: 0.3rem 0.7rem;
-        // background: #c11100;
-        toasterButton: () => ({
+        ttoasterWrp:({ type }) => ({
+            color: type === 'success' ? '#91ff94' : '#4c0700',
+        }),
+        toasterButton: ({ type }) => ({
             border: 0,
-            background: '#39e03e',
+            background: type === 'success' ? '#39e03e' : '#c11100',
             padding: '0.3rem 0.7rem',
             borderRadius: '2px',
             fontWeight: 600,
-            color: '#058809',
+            color: type === 'success' ? '#058809' : '#ee8378',
             cursor: 'pointer'
         }),
     }

@@ -3,9 +3,9 @@ import useStyles from './styles';
 import globalStyles from '../../styles/globalStyle';
 import clsx from 'clsx';
 
-const Toaster = ({ msg, closeToast  }) => {
+const Toaster = ({ msg, closeToast, type  }) => {
 
-    const classes = useStyles()
+    const classes = useStyles({ type })
     const { dFlex } = globalStyles()
 
     return ( 

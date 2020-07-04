@@ -9,7 +9,8 @@ const useStyles = createUseStyles((theme) => ({
         boxShadow: '0 0 20px -15px #656565',
         position: 'fixed',
         width: '100%',
-        zIndex: 1
+        zIndex: 1,
+        height: 65
     },
     logo: {
         fontWeight: 600,

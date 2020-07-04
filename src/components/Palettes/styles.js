@@ -6,7 +6,8 @@ const useStyles = createUseStyles((theme) => {
         paletteWrp: {
             padding: '1rem',
             transition: 'all linear 0.3s',
-            background: '#f9f9f9'
+            background: '#f9f9f9',
+            boxShadow: '0px 0px 3px 0px #d2d2d2'
         },
         paletteAction: {
             '& a': {

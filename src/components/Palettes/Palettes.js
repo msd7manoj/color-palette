@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { Row, Col } from 'react-flexbox-grid';
 import useStyles from './styles';
 import IconLink from '../IconLink/IconLink';
@@ -18,11 +19,16 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
 
     const globalClasses = globalStyles()
     
+    const history = useHistory();
+
     const viewPalette = (id) => (e) => {
       openPaletteDrawer()
       selectPalette(id)
     }
-
+    const openPalette = (palettes) => (e) => {
+      const paletteSlug = palettes.join('-')
+      history.push(`/create-palette/${paletteSlug}`);
+    }
     const copyAll = () => {
       notification(`Copied to Clipboard`)
       if(data.palettes.length > 0)
@@ -40,7 +46,7 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
               <IconLink onClick={copyAll} tooltip="Copy All"> 
                 <i className="far fa-copy"></i>
               </IconLink>
-              <IconLink tooltip="Open Palette"> 
+              <IconLink onClick={openPalette(data.palettes)} tooltip="Open Palette"> 
                 <i className="fas fa-palette"></i>
               </IconLink>
               <IconLink onClick={viewPalette(data._id)} tooltip="View Palette"> 

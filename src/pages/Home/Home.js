@@ -38,7 +38,6 @@ const Home = ({ palettesList, isListLoaded, palettesFetchStart }) => {
                     isListLoaded={isListLoaded}  />
                 </Col>
             </Row>
-
         </>
     );
 }
