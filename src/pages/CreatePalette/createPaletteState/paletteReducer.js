@@ -17,6 +17,11 @@ export const createPaletteReducer = (state, { type, payload }) => {
                 ...state,
                 selectedColorInd: payload
             }; 
+        case CREATE_PALETTE_ACTION.PICKER_COMPLETED_COLOR:
+            return {
+                ...state,
+                pickerCompletedColor: payload
+            }; 
         default:
             return state
     }

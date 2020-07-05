@@ -1,4 +1,5 @@
 export const initialState = {
     palettes: {},
-    selectedColorInd: 1
+    selectedColorInd: 1,
+    pickerCompletedColor: ''
 }

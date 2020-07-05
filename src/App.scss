@@ -618,3 +618,44 @@ body {
         }
     }
 }
+
+.tintShaderWrp {
+    width: 100%;
+    .tintShaderList {
+        li {
+            .tintShaderBox {
+                flex-grow: 1;
+                height: 300px;
+                cursor: pointer;
+                transition: all linear 0.2s;
+                &:hover,&.active {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+.similiarColors {
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #727272;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+    ul {
+        flex-wrap: wrap;
+        li {
+            width: 60px;
+            height: 60px;
+            margin: 0.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all linear 0.2s;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}

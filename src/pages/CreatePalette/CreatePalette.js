@@ -13,23 +13,22 @@ import IconLink from '../../components/IconLink/IconLink';
 import { TABS_OPTIONS } from './constants';
 import reshader from 'reshader'
 import { MATERIAL_COLORS } from '../../colorConverter/materialColors';
-import { getTintShades } from '../../utils/tintShades';
+import { getTintShades, generateTintShades } from '../../utils/tintShades';
 import GeneratePalettes from './components/GeneratePalettes';
 import WebColors from './components/WebColors';
 import MaterialColors from './components/MaterialColors';
+import TintShades from './components/TintShades';
 
 
 const CreatePalette = () => {
     const paletteState = useContext(paletteStateContext)
     const dispatch = useContext(paletteDispatchContext)
     const [tabMenu, setTabMenu] = useState(TABS_OPTIONS)
+
     const [webColorInfo, setWebColorInfo] = useState()
     const [selectedWebColor, setselectedWebColor] = useState('')
     const { palettes } = useParams()
-
-    console.log('reshader(#ffcdd2)',[...new Set( reshader('#ffcdd2', { numberOfVariations: 11 }).palette )])
-    
-    console.log('getTintShades', getTintShades('ff0000'))
+   
     useEffect(() => {
         const paletteColor = {}
         palettes.split('-').forEach( (color, ind) => {
@@ -41,14 +40,21 @@ const CreatePalette = () => {
     const onChangeColor = useCallback((e) => {
         const { hex } = e
         console.log(hex.substr(1))
-        dispatch({ type: CREATE_PALETTE_ACTION.EDIT_PALETTE, payload: { id: paletteState.selectedColorInd,color: hex.substr(1)} })
+        dispatch({ type: CREATE_PALETTE_ACTION.EDIT_PALETTE, payload: { id: paletteState.selectedColorInd, color: hex.substr(1)} })
     }, [paletteState.selectedColorInd]);
     
+    const onChangeColorComplete = useCallback((e) => {
+        const { hex } = e
+        dispatch({ type: CREATE_PALETTE_ACTION.PICKER_COMPLETED_COLOR, payload: tinycolor2(hex.substr(1)).toHsl() })
+    }, [paletteState.selectedColorInd]);
+
+    
+
+
     const selectWebColor = (color) => (e) => {
         setselectedWebColor(color.name)
         dispatch({ type: CREATE_PALETTE_ACTION.EDIT_PALETTE, payload: { id: paletteState.selectedColorInd,color: color.hex.substr(1)} })
     }
-
 
     const onTabClick = (menu) => (e) => {
         e.preventDefault()
@@ -66,9 +72,6 @@ const CreatePalette = () => {
 
     return ( 
         <>
-            {/* <pre>
-                {JSON.stringify(paletteState)}
-            </pre> */}
             <Row between="md">
                 <Col md={5}>
                     <div className="creatPaletteWrp">
@@ -93,14 +96,17 @@ const CreatePalette = () => {
 
                         <div className="chooserContent">
                             { tabMenu[0]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className="dFlex">
                                     <ColorPicker 
-                                    width={'65%'} onChangeColor={onChangeColor} />
+                                    width={'100%'}
+                                    onChangeColorComplete={ onChangeColorComplete }
+                                    onChangeColor={onChangeColor} />
                                 </div> 
                             ) }
                             { tabMenu[1]['active'] && (
                                 <div className="dFlex justify-center">
-                                    
+                                    <TintShades 
+                                    selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[2]['active'] && (

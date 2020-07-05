@@ -1,3 +1,23 @@
+import tinycolor from 'tinycolor2'
+
+
+export const generateTintShades = (hex) => {
+    let tintShadeCounter = 100
+    let tintArr = []
+    let shadeArr = []
+    while( tintShadeCounter >= 0 ) {
+        console.log('tintCounter', tintShadeCounter)
+        tintArr.push(tinycolor(hex).brighten(tintShadeCounter).toString())
+        console.log('ShadeCounter', tintShadeCounter)
+        shadeArr.push(tinycolor(hex).darken(tintShadeCounter).toString())
+        tintShadeCounter = tintShadeCounter - 5
+    }
+    console.log('tintArr', tintArr)
+    console.log('shadeArr', shadeArr)
+    console.log('SetArr', [...new Set([...tintArr, ...shadeArr.reverse()])])
+    return [...new Set([...tintArr, ...shadeArr])].reverse()
+}
+
 const addZeros = (number, length) => {
     let str = '' + number;
     while (str.length < length) {
@@ -45,7 +65,12 @@ const getTints = (hex) => {
 export const getTintShades = ( hex ) => {
     const shades = getShades(hex)
     const tints = getTints(hex)
-    console.log(shades)
-    console.log(tints)
+    const concatTS = [...shades, ...tints]
+    console.log('shades', shades)
+    console.log('shades', tints)
+    console.log('concatTS', concatTS)
     console.log(new Set([...shades, ...tints]));
 }
+
+
+
