@@ -29,23 +29,25 @@ const WebColors = ({ selectedColorInd }) => {
     
     return ( 
         <div>
-            
             <WebColorInfo colorData={ hoverColorInfo ? hoverColorInfo : selectedColorInfo } />
-            <ul className="dFlex webColorsList">
-                {
-                    WEB_COLOR_NAMES.map(( color ) => {
-                        return (
-                            <li key={color.name} 
-                                onMouseOver={onColorHoverLeave(color)}
-                                onMouseLeave={onColorHoverLeave(color, 'leave')}
-                                onClick={selectWebColor(color)}>
-                                <div className={ clsx( selectedWebColor === color.name  && 'active') } style={{backgroundColor: `${ color.hex }`}}>
-                                </div>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+            <div className="scrollBar webColorsWrp">
+                <ul className="dFlex justify-center webColorsList">
+                    {
+                        WEB_COLOR_NAMES.map(( color ) => {
+                            return (
+                                <li key={color.name} 
+                                    onMouseOver={onColorHoverLeave(color)}
+                                    onMouseLeave={onColorHoverLeave(color, 'leave')}
+                                    onClick={selectWebColor(color)}>
+                                    <div className={ clsx( selectedWebColor === color.name  && 'active') } style={{backgroundColor: `${ color.hex }`}}>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+
         </div>
     );
 }

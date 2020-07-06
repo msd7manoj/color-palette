@@ -22,7 +22,6 @@ const MaterialColors = ({ selectedColorInd }) => {
         dispatch({ type: CREATE_PALETTE_ACTION.EDIT_PALETTE, payload: { id: selectedColorInd, color: hex.substr(1)} })
     }
     const onColorHoverLeave = (hex, theme, type = 'enter') => (e) => {
-        console.log({ theme, hex: hex.substr(1), rgb: tinycolor(hex).toRgbString() })
         setHoverColorInfo( type === 'enter' ? { theme, hex: hex.substr(1), rgb: tinycolor(hex).toRgbString() } : undefined)
     }
     return ( 

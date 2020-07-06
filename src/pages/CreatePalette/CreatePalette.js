@@ -18,6 +18,8 @@ import GeneratePalettes from './components/GeneratePalettes';
 import WebColors from './components/WebColors';
 import MaterialColors from './components/MaterialColors';
 import TintShades from './components/TintShades';
+import HueShades from './components/HueShades';
+import ColorSchemes from './components/ColorSchemes';
 
 
 const CreatePalette = () => {
@@ -99,104 +101,39 @@ const CreatePalette = () => {
                                 <div className="dFlex">
                                     <ColorPicker 
                                     width={'100%'}
+                                    color={ `#${paletteState.paletteSelectedColor}` }
+                                    selectedColorInd={paletteState.selectedColorInd}
                                     onChangeColorComplete={ onChangeColorComplete }
                                     onChangeColor={onChangeColor} />
                                 </div> 
                             ) }
                             { tabMenu[1]['active'] && (
                                 <div className="dFlex justify-center">
-                                    <TintShades 
-                                    selectedColorInd={paletteState.selectedColorInd} />
+                                    <HueShades selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[2]['active'] && (
                                 <div className="dFlex justify-center">
-                                    <WebColors selectedColorInd={paletteState.selectedColorInd} />
+                                    <ColorSchemes selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[3]['active'] && (
                                 <div className="dFlex justify-center">
+                                    <TintShades 
+                                    selectedColorInd={paletteState.selectedColorInd} />
+                                </div> 
+                            ) }
+                            { tabMenu[4]['active'] && (
+                                <div className="dFlex justify-center">
+                                    <WebColors selectedColorInd={paletteState.selectedColorInd} />
+                                </div> 
+                            ) }
+                            { tabMenu[5]['active'] && (
+                                <div className="dFlex justify-center">
                                     <MaterialColors selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
-
-                            <div className="">
-                                {/* <ul className="scrollBar dFlex webColorsList">
-                                    {
-                                        COLOR_NAMES.map(( color ) => {
-                                            return (
-                                                <li onClick={selectWebColor(color.hex.substr(1))}>
-                                                    <div style={{backgroundColor: `${ color.hex }`}} className="bgColor">
-                                                        <span>
-                                                            {color.hex.substr(1)}
-                                                        </span>
-                                                    </div>
-                                                    <div className="dFlex justify-between bgInfo">
-                                                        <h4>{color.name}</h4>
-                                                        <a href="/">
-                                                            <i class="far fa-copy"></i>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </ul> */}
-
-
-
-                                {/* <div className="dFlex colorInfoDesc justify-between">
-                                    { webColorInfo && (
-                                                <>
-                                                    <h3>
-                                                        {webColorInfo.name}
-                                                    </h3>
-                                                    <h3>
-                                                        {webColorInfo.hex.substr(1)}
-                                                    </h3>
-                                                </>
-                                    ) }
-                                </div>
-                                <ul className="dFlex webColorsList">
-                                    {
-                                        COLOR_NAMES.map(( color ) => {
-                                            return (
-                                                <li onMouseOver={onColorOverLeave(color)} onClick={selectWebColor(color)}>
-                                                    <div className={ clsx( selectedWebColor === color.name  && 'active') } style={{backgroundColor: `${ color.hex }`}}>
-                                                    </div>
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </ul> */}
-
-                                
-
-                                {/* <div className="dFlex materialColor justify-between">
-                                    <ul className="materialColorList">
-                                        {
-                                            MATERIAL_COLORS.map( color => {
-                                                return (
-                                                    <li>
-                                                        <h3>{color.name}</h3>
-                                                        <div className="colorBoxWrp">
-                                                            {
-                                                                color.codes.map( code => {
-                                                                    return (
-                                                                        <div className="colorBox" style={{ backgroundColor: code }}>
-
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </div>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </ul>
-                                </div> */}
-                            </div>
+                            
                         </div>
                     </div>
                 </Col>

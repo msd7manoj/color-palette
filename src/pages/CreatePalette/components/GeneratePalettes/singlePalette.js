@@ -8,6 +8,7 @@ const SinglePalette = ({ index, selectedColorInd, color }) => {
     const dispatch = useContext(paletteDispatchContext)
     const selectPalette = (e) => {
         dispatch({ type: CREATE_PALETTE_ACTION.SELECTED_PALETTE, payload: index + 1 })
+        dispatch({ type: CREATE_PALETTE_ACTION.SELECTED_PALETTE_COLOR, payload: color })
     }
     return ( 
         <li onClick={selectPalette} className={clsx( index + 1 === selectedColorInd && 'selected' )} style={{ background: `#${color}` }}>

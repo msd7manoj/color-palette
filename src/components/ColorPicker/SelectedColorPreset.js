@@ -13,9 +13,10 @@ const SelectedColorPreset = ({ color, count = 20 }) => {
 
     useEffect(()=>{
         setSimiliarColor(randomColor({
-            hue: parseInt(pickerCompletedColor.h), //pickerCompletedColor,#cd47ac
+            hue: parseInt(pickerCompletedColor.h === 0 ? 1 : pickerCompletedColor.h),
             count: count
         })) 
+        console.log('pickerCompletedColor', pickerCompletedColor.h)
     },[count, pickerCompletedColor])
 
 
