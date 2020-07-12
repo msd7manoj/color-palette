@@ -8,7 +8,7 @@ const useStyles = createUseStyles((theme) => {
             width: theme.icons.width,
             height: theme.icons.height,
             fontSize: '1rem',
-            color: theme.icons.color,
+            color: theme.text.secondaryColor,
             ...displayFlex('center', 'center'),
             borderRadius: '50px',
             transition: 'all linear 0.3s',

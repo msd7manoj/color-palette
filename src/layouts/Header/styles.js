@@ -10,20 +10,27 @@ const useStyles = createUseStyles((theme) => ({
         position: 'fixed',
         width: '100%',
         zIndex: 1,
-        height: 65
+        height: 65,
+    },
+    headerRowWrp: {
+        width: '100%'
+    },
+    ddMenu:{
+        margin: '0 0.5rem 0 1.5rem',
     },
     logo: {
-        fontWeight: 600,
+        fontWeight: 700,
         fontSize: '2rem',
         '& a': {
-            backgroundImage: `url(${logo})`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            textIndent: '-9999px',
-            width: '170px',
-            height: '55px',
-            display: 'block'
+            color: theme.text.color
+            // backgroundImage: `url(${logo})`,
+            // backgroundPosition: 'center',
+            // backgroundRepeat: 'no-repeat',
+            // backgroundSize: 'cover',
+            // textIndent: '-9999px',
+            // width: '170px',
+            // height: '55px',
+            // display: 'block'
         }
     },
     dFlex:{
@@ -38,7 +45,8 @@ const useStyles = createUseStyles((theme) => ({
     },
     loginWrap: {
         '& a': {
-            color: theme.links.color,
+            color: theme.text.secondaryColor,
+            fontWeight: theme.textBolder(),
             margin: '0 1rem'
         }
     }

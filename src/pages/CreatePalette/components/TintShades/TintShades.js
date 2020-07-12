@@ -7,12 +7,18 @@ import { CREATE_PALETTE_ACTION } from '../../createPaletteState/paletteAction';
 import useRenderCount from '../../../../utils/useRenderCount';
 import clsx from 'clsx';
 import WebColorInfo from '../WebColors/WebColorInfo';
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
 
 const defaultColorInfo = { hex: '-', rgb: '-' }
 const TintShades = ({ selectedColorInd }) => {
     useRenderCount()
     const { palettes } = useContext(paletteStateContext)
     const dispatch = useContext(paletteDispatchContext)
+
+    const classes = useStyles()
+    const {dFlex} = globalStyles()
+
 
     const [ selectedColorInfo, setSelectedColorInfo ] = useState(defaultColorInfo)
     const [ selectedTSColor, setselectedTSColor ] = useState(palettes[selectedColorInd])
@@ -42,20 +48,20 @@ const TintShades = ({ selectedColorInd }) => {
     }
 
     return ( 
-        <div className="tintShaderWrp">
+        <div className={classes.tintShaderWrp}>
             <WebColorInfo colorData={selectedColorInfo} />
 
 
-            <ul className="tintShaderList">
+            <ul className={classes.tintShaderList}>
                 {
                     tintShades.map( ({ colorHex, tintAndShades }) => {
                         return (
-                            <li className="dFlex">
+                            <li className={dFlex}>
                                  {
                                      tintAndShades.map( ts => {
                                          return (
                                              <div
-                                             className={clsx("tintShaderBox", ts === `${selectedTSColor}` && 'active')}
+                                             className={clsx(classes.tintShaderBox, ts === `${selectedTSColor}` && 'active')}
                                              onClick={selectLSColor(ts)}
                                              style={{ backgroundColor: ts }}></div>
                                          )

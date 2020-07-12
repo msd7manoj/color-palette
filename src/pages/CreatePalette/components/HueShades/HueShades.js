@@ -5,6 +5,8 @@ import tinycolor from 'tinycolor2'
 import clsx from 'clsx';
 import { paletteDispatchContext } from '../../createPaletteState/paletteContext';
 import { CREATE_PALETTE_ACTION } from '../../createPaletteState/paletteAction';
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
 
 const defaultColorInfo = { shade: '-', hex: '-', rgb: '-' }
 
@@ -13,6 +15,7 @@ const HueShades = ({ selectedColorInd }) => {
     const [ hoverColorInfo, setHoverColorInfo ] = useState()
     const [ selectedHueColor, setSelectedHueColor ] = useState('')
 
+    const classes = useStyles()
 
     const dispatch = useContext(paletteDispatchContext)
 
@@ -30,16 +33,16 @@ const HueShades = ({ selectedColorInd }) => {
     return ( 
         <>
             <WebColorInfo colorData={ hoverColorInfo ? hoverColorInfo : selectedColorInfo } />
-            <div className="scrollBar hueShadeWrp">
-                <ul className="hueShadeList">
+            <div className={ clsx('scrollBar', classes.hueShadeWrp) }>
+                <ul className={classes.hueShadeList}>
                     {
                         HUE_COLOR_SHADES.map( shades => {
                             return (
-                                <li className="dFlex">
-                                    <div className="hueShadeName">
+                                <li className={classes.dFlex}>
+                                    <div className={classes.hueShadeName}>
                                         { shades['name'] }
                                     </div>
-                                    <div className="hueShadeColl dFlex">
+                                    <div className={ clsx(classes.dFlex, classes.hueShadeColl) }>
                                         { shades['shades'].map( shade => {
                                             return (
                                                 <div 

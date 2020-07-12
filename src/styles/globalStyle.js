@@ -5,6 +5,8 @@ const globalStyles = createUseStyles((theme) => {
     console.log('theme', theme)
     return {
         'dFlex': displayFlex(),
+        'dFlexStart': displayFlex('center', 'flex-start'),
+        'dFlexCenter': displayFlex('center', 'center'),
         'dFlexEnd': displayFlex('center', 'flex-end'),
         '@global': {
             input: {
@@ -38,22 +40,6 @@ const globalStyles = createUseStyles((theme) => {
                     margin: 'auto',
                 },
                 
-            }
-        },
-        appMenuIcon: {
-            ...displayFlex('center', 'center'),
-            margin: '0 0.5rem 0 1.5rem',
-            fontSize: '1.4rem',
-            color: '#9c9c9c',
-            width: '40px',
-            height: '40px',
-            background: '#f9f9f9',
-            border: 0,
-            cursor: 'pointer',
-            borderRadius: '50%',
-            transition: 'all linear 0.3s',
-            '&:hover': {
-                background: '#e4e4e4'
             }
         },
         'mb-xs': {

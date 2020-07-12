@@ -399,7 +399,6 @@ body {
     padding: 0.5rem;
     border-radius: 5px;
     background: #f7f7f7;
-    // box-shadow: 0px 0px 3px 0px #d2d2d2;
     .creatPaletteList {
         flex-direction: column;
         height: calc(100vh - (65px + 6rem ));
@@ -438,12 +437,10 @@ body {
             
         }
     }
-    
 }
 
 .chooserTab {
     border-bottom: 2px solid #f5f0f0;
-    
     li {
         a {
             font-weight: 700;

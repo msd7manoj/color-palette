@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { paletteDispatchContext } from '../../createPaletteState/paletteContext';
 import { CREATE_PALETTE_ACTION } from '../../createPaletteState/paletteAction';
 import WebColorInfo from './WebColorInfo';
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
 
 const defaultColorInfo = { name: '-', hex: '-', rgb: '-' }
 
@@ -13,6 +15,9 @@ const WebColors = ({ selectedColorInd }) => {
     const [ selectedWebColor, setselectedWebColor ] = useState('')
 
     const dispatch = useContext(paletteDispatchContext)
+    const classes = useStyles()
+    const { dFlexCenter } = globalStyles()
+
 
     const selectWebColor = (color) => (e) => {
         setselectedWebColor(color.name)
@@ -30,8 +35,8 @@ const WebColors = ({ selectedColorInd }) => {
     return ( 
         <div>
             <WebColorInfo colorData={ hoverColorInfo ? hoverColorInfo : selectedColorInfo } />
-            <div className="scrollBar webColorsWrp">
-                <ul className="dFlex justify-center webColorsList">
+            <div className={ clsx('scrollBar', classes.webColorsWrp) }>
+                <ul className={ clsx(dFlexCenter, classes.webColorsList) }>
                     {
                         WEB_COLOR_NAMES.map(( color ) => {
                             return (

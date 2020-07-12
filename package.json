@@ -11,6 +11,7 @@
     "clsx": "^1.1.1",
     "color-convert": "^2.0.1",
     "color-scheme": "^1.0.1",
+    "colorthief": "^2.3.2",
     "node-sass": "^4.14.1",
     "randomcolor": "^0.5.4",
     "rc-drawer": "^4.1.0",
@@ -37,7 +38,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

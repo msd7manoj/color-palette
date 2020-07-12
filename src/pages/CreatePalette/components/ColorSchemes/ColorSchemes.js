@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { paletteDispatchContext, paletteStateContext } from '../../createPaletteState/paletteContext';
 import WebColorInfo from '../WebColors/WebColorInfo';
 import { CREATE_PALETTE_ACTION } from '../../createPaletteState/paletteAction';
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
 
 
 
@@ -21,8 +23,9 @@ const ColorSchemes = ({ selectedColorInd }) => {
     const [ selectedColor, setSelectedColor ] = useState('')
     const [schemes, setSchemes] = useState([])
 
+    const classes = useStyles()
+
     useEffect(() => {
-        console.log('palettes', palettes)
         setSchemes(Object.values(palettes).map( palette => {
             return {
                 'analogous': getColorScheme('analogous', palette),
@@ -47,18 +50,18 @@ const ColorSchemes = ({ selectedColorInd }) => {
     return ( 
         <>
         <WebColorInfo colorData={ hoverColorInfo ? hoverColorInfo : selectedColorInfo } />
-        <div className="scrollBar schemeListsWrp">
-            <ul className="dFlex schemeLists">
+        <div className={ clsx('scrollBar', classes.schemeListsWrp) }>
+            <ul className={ clsx(classes.dFlex, classes.schemeLists) }>
                 {
                     schemes.map( scheme => {
                         return (
-                            <li className="dFlex">
+                            <li className={classes.dFlex}>
                                 {
                                     Object.keys(scheme).map( key => {
                                         return (
-                                            <div className="dFlex schemeColl">
+                                            <div className={ clsx(classes.dFlex, classes.schemeColl) }>
                                                 <h3>{ key }</h3>
-                                                <div className="dFlex schemeColorBox">
+                                                <div className={ clsx(classes.dFlex, classes.schemeColorBox) }>
                                                     { scheme[key].map( palette => {
                                                         return (
                                                             <div

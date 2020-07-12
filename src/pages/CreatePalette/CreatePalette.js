@@ -5,6 +5,7 @@ import SectionTitle from '../../components/SectionTitle';
 import { paletteDispatchContext, paletteStateContext } from './createPaletteState/paletteContext';
 import { CREATE_PALETTE_ACTION } from './createPaletteState/paletteAction';
 import clsx from 'clsx';
+import useStyles from './styles';
 import ColorPicker from '../../components/ColorPicker';
 import { COLOR_NAMES } from '../../colorConverter/constants';
 import tinycolor2 from 'tinycolor2'
@@ -20,6 +21,7 @@ import MaterialColors from './components/MaterialColors';
 import TintShades from './components/TintShades';
 import HueShades from './components/HueShades';
 import ColorSchemes from './components/ColorSchemes';
+import globalStyles from '../../styles/globalStyle';
 
 
 const CreatePalette = () => {
@@ -30,7 +32,10 @@ const CreatePalette = () => {
     const [webColorInfo, setWebColorInfo] = useState()
     const [selectedWebColor, setselectedWebColor] = useState('')
     const { palettes } = useParams()
-   
+    const classes = useStyles()
+    const {dFlex} = globalStyles()
+
+
     useEffect(() => {
         const paletteColor = {}
         palettes.split('-').forEach( (color, ind) => {
@@ -76,13 +81,13 @@ const CreatePalette = () => {
         <>
             <Row between="md">
                 <Col md={5}>
-                    <div className="creatPaletteWrp">
+                    <div className={classes.creatPaletteWrp}>
                         <GeneratePalettes />
                     </div>
                 </Col>
                 <Col md={7}>
-                    <div className="colorChooser">
-                        <ul className="dFlex chooserTab">
+                    <div className={classes.colorChooser}>
+                        <ul className={ clsx(dFlex, classes.chooserTab)}>
                             {
                                 tabMenu.map( menu => {
                                     return (
@@ -96,9 +101,9 @@ const CreatePalette = () => {
                             }
                         </ul>
 
-                        <div className="chooserContent">
+                        <div className={classes.chooserContent}>
                             { tabMenu[0]['active'] && (
-                                <div className="dFlex">
+                                <div className={dFlex}>
                                     <ColorPicker 
                                     width={'100%'}
                                     color={ `#${paletteState.paletteSelectedColor}` }
@@ -108,32 +113,31 @@ const CreatePalette = () => {
                                 </div> 
                             ) }
                             { tabMenu[1]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className={classes.dFlex}>
                                     <HueShades selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[2]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className={classes.dFlex}>
                                     <ColorSchemes selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[3]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className={classes.dFlex}>
                                     <TintShades 
                                     selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[4]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className={classes.dFlex}>
                                     <WebColors selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[5]['active'] && (
-                                <div className="dFlex justify-center">
+                                <div className={classes.dFlex}>
                                     <MaterialColors selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
-                            
                         </div>
                     </div>
                 </Col>

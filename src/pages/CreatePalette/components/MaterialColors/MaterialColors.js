@@ -5,6 +5,8 @@ import tinycolor from 'tinycolor2'
 import clsx from 'clsx';
 import { paletteDispatchContext } from '../../createPaletteState/paletteContext';
 import { CREATE_PALETTE_ACTION } from '../../createPaletteState/paletteAction';
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
 
 
 const defaultColorInfo = { theme: '-', hex: '-', rgb: '-' }
@@ -14,7 +16,8 @@ const MaterialColors = ({ selectedColorInd }) => {
     const [ hoverColorInfo, setHoverColorInfo ] = useState()
     const [ selectedMatColor, setSelectedMatColor ] = useState('')
     const dispatch = useContext(paletteDispatchContext)
-
+    const classes = useStyles()
+    const {dFlex} = globalStyles()
 
     const selectMatColor = (theme, hex) => (e) => {
         setSelectedMatColor(hex)
@@ -25,18 +28,17 @@ const MaterialColors = ({ selectedColorInd }) => {
         setHoverColorInfo( type === 'enter' ? { theme, hex: hex.substr(1), rgb: tinycolor(hex).toRgbString() } : undefined)
     }
     return ( 
-        <div className="dFlex matColorWrp">
+        <div className={ clsx(dFlex, classes.matColorWrp) }>
             <WebColorInfo colorData={ hoverColorInfo ? hoverColorInfo : selectedColorInfo } />
-            <div className="scrollBar materialColor">
-                <ul className="materialColorList">
+            <div className={ clsx('scrollBar', classes.materialColor) }>
+                <ul className={ classes.materialColorList }>
                     {
                         MATERIAL_COLORS.map( color => {
                             return (
                                 <li
-                                
-                                className="dFlex">
+                                className={dFlex}>
                                     <h3>{color.name}</h3>
-                                    <div className="colorBoxWrp">
+                                    <div className={ clsx(dFlex, classes.colorBoxWrp)  }>
                                         {
                                             color.codes.map( code => {
                                                 return (
@@ -44,7 +46,7 @@ const MaterialColors = ({ selectedColorInd }) => {
                                                     onMouseOver={onColorHoverLeave(code, color.name)}
                                                     onMouseLeave={onColorHoverLeave(code, color.name, 'leave')}
                                                     onClick={selectMatColor(color.name, code)} 
-                                                    className={clsx('colorBox', code === selectedMatColor && 'active')} style={{ backgroundColor: code }}></div>
+                                                    className={clsx(classes.colorBox, code === selectedMatColor && 'active')} style={{ backgroundColor: code }}></div>
                                                 )
                                             })
                                         }

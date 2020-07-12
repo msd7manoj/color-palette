@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { palettesSelect } from '../../redux/palettesState/actions/action';
 import { openPaletteDrawer } from '../../redux/uiState/action/action';
 import { copyText, notification } from '../../utils/utils';
+import DropDownMenu, { DropDownItem } from '../DropDownMenu/DropDownMenu';
 
 
 
@@ -40,9 +41,33 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
         <Row end="md" middle="md" className={globalClasses['mb-xs']}>
           <Col md={12}>
             <div className={globalClasses['dFlexEnd']}>
-              <IconLink tooltip="Export Palette"> 
+              {/* <IconLink tooltip="Export Palette"> 
                 <i className="fas fa-file-export"></i>
-              </IconLink>
+              </IconLink> */}
+              <DropDownMenu
+                    position={ 'bottom-right' }
+                    size={'md'}
+                    width={170}
+                    iconSize={'1rem'}
+                    iconWidth={35}
+                    iconHeight={35}
+                    iconClass={'fas fa-file-export'}>
+                <DropDownItem>
+                  <a href="/">Explore As SVG</a>
+                </DropDownItem>
+                <DropDownItem>
+                  <a href="/">Export As PDF</a>
+                </DropDownItem>
+                <DropDownItem>
+                  <a href="/">Export As PDF</a>
+                </DropDownItem>
+                <DropDownItem>
+                  <a href="/">Export As CSS</a>
+                </DropDownItem>
+                <DropDownItem>
+                  <a href="/">Explore As JSON</a>
+                </DropDownItem>
+              </DropDownMenu>
               <IconLink onClick={copyAll} tooltip="Copy All"> 
                 <i className="far fa-copy"></i>
               </IconLink>

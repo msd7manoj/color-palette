@@ -14,6 +14,7 @@ const useStyles = createUseStyles((theme) => {
             }
             return {
                 borderRadius: '3px',
+                fontWeight: theme.textBolder(),
                 background: theme.primary.color,
                 color: '#fff',
                 border: 0,

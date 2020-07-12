@@ -1,9 +1,15 @@
 import React from 'react';
+import useStyles from './styles';
+import clsx from 'clsx';
+import globalStyles from '../../../../styles/globalStyle';
 
 const WebColorInfo = ({ colorData }) => {
-    console.log('colorData', colorData)
+    const classes = useStyles()
+    const {dFlex} = globalStyles()
+
+
     return ( 
-        <ul className="colorInfoDesc dFlex justify-between">
+        <ul className={ clsx(dFlex, classes.colorInfoDesc) }>
             { Object.keys(colorData).map( color => {
                 return (
                     <li style={ { width: `${100/Object.keys(colorData).length}%` }}>

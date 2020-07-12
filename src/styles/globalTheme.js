@@ -8,9 +8,11 @@ export const globalTheme = {
     },
     secondary: {
         color: '#ff7f50',
+        bgColor: '#f7f7f7'
     },
     text: {
-        color: "#000"
+        color: "#000",
+        secondaryColor: '#727272'
     },
     links: {
         color: "#000",
@@ -26,6 +28,9 @@ export const globalTheme = {
         borderRadius: '3px',
         height: '40px',
         lineHeight: '40px'
+    },
+    textBolder(intense = 6) {
+        return intense * 100
     },
     success: {
         

@@ -2,7 +2,19 @@ export const displayFlex = (alignItems = 'center', justifyContent = 'space-betwe
     return {
         display: 'flex',
         alignItems,
-        justifyContent 
+        justifyContent,
+        flexWrap: 'wrap'
+    }
+}
+
+export const colorPickerContentHeight = ( height = 350, overflowY = 'scroll' ) => {
+    return { height,  overflowY }
+}
+
+
+export const transitions = ( duration = '0.3s', type='linear',  ) => {
+    return {
+        transition: `all ${type} ${duration}`
     }
 }
 
