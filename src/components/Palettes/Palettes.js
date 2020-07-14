@@ -53,19 +53,19 @@ const Palettes = ({ data, openPaletteDrawer, selectPalette }) => {
                     iconHeight={35}
                     iconClass={'fas fa-file-export'}>
                 <DropDownItem>
-                  <a href="/">Explore As SVG</a>
+                  <a href="/">Explore as SVG</a>
                 </DropDownItem>
                 <DropDownItem>
-                  <a href="/">Export As PDF</a>
+                  <a href="/">Export as PDF</a>
                 </DropDownItem>
                 <DropDownItem>
-                  <a href="/">Export As PDF</a>
+                  <a href="/">Export as Image</a>
                 </DropDownItem>
                 <DropDownItem>
-                  <a href="/">Export As CSS</a>
+                  <a href="/">Export as CSS</a>
                 </DropDownItem>
                 <DropDownItem>
-                  <a href="/">Explore As JSON</a>
+                  <a href="/">Explore as JSON</a>
                 </DropDownItem>
               </DropDownMenu>
               <IconLink onClick={copyAll} tooltip="Copy All"> 

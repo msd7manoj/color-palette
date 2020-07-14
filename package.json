@@ -12,6 +12,7 @@
     "color-convert": "^2.0.1",
     "color-scheme": "^1.0.1",
     "colorthief": "^2.3.2",
+    "gradstop": "^2.2.3",
     "node-sass": "^4.14.1",
     "randomcolor": "^0.5.4",
     "rc-drawer": "^4.1.0",
