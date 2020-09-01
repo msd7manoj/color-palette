@@ -10,6 +10,13 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
+/*!
+ * iro.js v5.2.0
+ * 2016-2020 James Daniel
+ * Licensed under MPL 2.0
+ * github.com/jaames/iro.js
+ */
+
 /**
  * A better abstraction over CSS.
  *
