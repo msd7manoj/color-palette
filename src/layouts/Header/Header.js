@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { Row, Col } from 'react-flexbox-grid';
 import Button from '../../components/Button';
 import useStyles from './styles';
@@ -10,10 +11,18 @@ import { DropDownItem } from '../../components/DropDownMenu/DropDownMenu';
 const Header = () => {
     
     const classes = useStyles()
+    let history = useHistory();
+
 
     const { appMenuIcon, dFlex, dFlexEnd } = globalStyles()
 
     const appMenu = globalStyles()
+
+    const onCreateGradient = (e) => {
+      history.push('/create-gradient/6b0c12-1cabc0')
+    }
+
+
     return (
         <header className={ clsx(dFlex, classes.header) }>
             <Row className={ classes.headerRowWrp } middle="md">
@@ -29,7 +38,8 @@ const Header = () => {
               <Col md={9}>
                 <div className={dFlexEnd}>
                   <div className={dFlex}>
-                    <Button text={'Create Palette'} buttonSize={'md'} />
+                    {/* <Button text={'Create Palette'} buttonSize={'md'} /> */}
+                    <Button onClick={onCreateGradient} text={'Create Gradient'} buttonSize={'md'} />
                     <DropDownMenu
                     className={classes.ddMenu}
                     position={ 'bottom-right' }
