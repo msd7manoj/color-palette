@@ -14,6 +14,11 @@ const useStyles = createUseStyles((theme) => {
         dFlex: {
             ...displayFlex('center', 'center')
         },
+        colorChooserSec: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%'
+        },
         chooserTab: {
             borderBottom: '2px solid #f5f0f0',
             "& li": {

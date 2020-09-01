@@ -46,7 +46,6 @@ const CreatePalette = () => {
 
     const onChangeColor = useCallback((e) => {
         const { hex } = e
-        console.log(hex.substr(1))
         dispatch({ type: CREATE_PALETTE_ACTION.EDIT_PALETTE, payload: { id: paletteState.selectedColorInd, color: hex.substr(1)} })
     }, [paletteState.selectedColorInd]);
     
@@ -77,7 +76,10 @@ const CreatePalette = () => {
         setWebColorInfo( type === 'enter' ? menu : undefined)
     }
 
-    return ( 
+    const iconStyle = { color: '#111', fontSize: '1.1rem', marginRight: '0.3rem' }
+    const buttonStyle = { fontWeight: '600' }
+
+    return (
         <>
             <Row between="md">
                 <Col md={5}>
@@ -86,7 +88,7 @@ const CreatePalette = () => {
                     </div>
                 </Col>
                 <Col md={7}>
-                    <div className={classes.colorChooser}>
+                    <div className={classes.colorChooserSec}>
                         <ul className={ clsx(dFlex, classes.chooserTab)}>
                             {
                                 tabMenu.map( menu => {
@@ -114,18 +116,18 @@ const CreatePalette = () => {
                             ) }
                             { tabMenu[1]['active'] && (
                                 <div className={classes.dFlex}>
-                                    <HueShades selectedColorInd={paletteState.selectedColorInd} />
+                                    <ColorSchemes selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[2]['active'] && (
                                 <div className={classes.dFlex}>
-                                    <ColorSchemes selectedColorInd={paletteState.selectedColorInd} />
+                                    <TintShades 
+                                    selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[3]['active'] && (
                                 <div className={classes.dFlex}>
-                                    <TintShades 
-                                    selectedColorInd={paletteState.selectedColorInd} />
+                                    <HueShades selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
                             { tabMenu[4]['active'] && (
@@ -138,6 +140,37 @@ const CreatePalette = () => {
                                     <MaterialColors selectedColorInd={paletteState.selectedColorInd} />
                                 </div> 
                             ) }
+                        </div>
+
+                        <div className="paletteActionMenu">
+                            <ul>
+                                <li>
+                                    <IconLink buttonStyle={buttonStyle} iconStyle={ iconStyle } tooltip="Copy All"> 
+                                        <i className="far fa-copy"></i>
+                                        Copy
+                                    </IconLink>
+                                </li>
+                                <li>
+                                    <IconLink buttonStyle={buttonStyle} iconStyle={ iconStyle } tooltip="View Palette"> 
+                                        {/* <i className="fas fa-swatchbook"></i> */}
+                                        <i class="far fa-eye"></i>
+                                        View
+                                    </IconLink>
+                                </li>
+                                <li>
+                                    <IconLink buttonStyle={buttonStyle} iconStyle={ iconStyle } tooltip="Export Palette">
+                                        {/* <i className="fas fa-file-export"></i> */}
+                                        <i class="far fa-share-square"></i>
+                                        Export
+                                    </IconLink>
+                                </li>
+                                <li>
+                                    <IconLink buttonStyle={buttonStyle} iconStyle={ iconStyle } tooltip="Save Palette">
+                                        <i class="far fa-save"></i>
+                                        Save
+                                    </IconLink>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </Col>

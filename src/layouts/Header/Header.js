@@ -14,7 +14,6 @@ const Header = () => {
     const { appMenuIcon, dFlex, dFlexEnd } = globalStyles()
 
     const appMenu = globalStyles()
-    console.log('appMenu', appMenu)
     return (
         <header className={ clsx(dFlex, classes.header) }>
             <Row className={ classes.headerRowWrp } middle="md">

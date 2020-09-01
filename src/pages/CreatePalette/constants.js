@@ -5,11 +5,6 @@ export const TABS_OPTIONS = [
         active: true
     },
     {
-        id: 'hueShades',
-        lable: 'Hue Shades',
-        active: false
-    },
-    {
         id: 'colorSchemes',
         lable: 'Color Schemes',
         active: false
@@ -17,6 +12,11 @@ export const TABS_OPTIONS = [
     {
         id: 'tintShades',
         lable: 'Tint & Shades',
+        active: false
+    },
+    {
+        id: 'hueShades',
+        lable: 'Hue Shades',
         active: false
     },
     {

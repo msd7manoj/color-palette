@@ -17,7 +17,6 @@ const PaletteTab = ({ selectedPalette }) => {
       setcolorTabs((tabs) => {
         return tabs.map( ( tab, i ) => ({ color: tab.color, active: ind === i }) )
       })
-      console.log(colors)
     }
 
     useEffect(() => {

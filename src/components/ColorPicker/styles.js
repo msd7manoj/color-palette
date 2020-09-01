@@ -13,10 +13,10 @@ const useStyles = createUseStyles((theme) => {
             '& ul': {
                 flexWrap: 'wrap',
                 '& li': {
-                    width: '60px',
-                    height: '60px',
+                    width: '70px',
+                    height: '40px',
                     margin: '0.2rem',
-                    borderRadius: '10px',
+                    borderRadius: '3px',
                     cursor: 'pointer',
                     ...transitions('0.2s'),
                     '&:hover': {

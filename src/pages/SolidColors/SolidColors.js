@@ -2,16 +2,18 @@ import React, { useEffect } from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import { Row, Col } from 'react-flexbox-grid';
 import globalStyles from '../../styles/globalStyle';
-import { COLOR_NAMES_VAL } from '../../colorConverter/constants';
-import  tinycolor  from 'tinycolor2';
+import { SOLID_COLORS } from '../../colorConverter/solidColorsConst';
 
 const SolidColors = () => {
 
     const globalClasses = globalStyles()
 
     useEffect(() => {
-        
-        
+        // console.log(Object.keys(a).map( ( color ) => {
+        //     return {
+        //         hex: `#${ color.split(',')[0] }`
+        //     }
+        // } ) )
     }, [])
 
     return ( 
@@ -20,7 +22,7 @@ const SolidColors = () => {
             <Row center="md">
                 <Col md={12}>
                     <ul className="dFlex solidColorLists">
-                        { COLOR_NAMES_VAL.map( (color) => {
+                        { SOLID_COLORS.map( (color) => {
                             return (
                                 <li>
                                     <div style={ {'backgroundColor': color.hex } }></div>

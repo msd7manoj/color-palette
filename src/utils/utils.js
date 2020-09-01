@@ -67,3 +67,6 @@ export const rgbToCMYK = (rgb, normalized) => {
     // }
     return `cmyk(${c}, ${m}, ${y}, ${k})`
 }
+
+
+export const contextActionCreator = (type, payload) => ({ type, payload })

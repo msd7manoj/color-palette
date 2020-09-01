@@ -12,9 +12,7 @@ export const generateTintShades = (hex) => {
         shadeArr.push(tinycolor(hex).darken(tintShadeCounter).toString())
         tintShadeCounter = tintShadeCounter - 5
     }
-    console.log('tintArr', tintArr)
-    console.log('shadeArr', shadeArr)
-    console.log('SetArr', [...new Set([...tintArr, ...shadeArr.reverse()])])
+    
     return [...new Set([...tintArr, ...shadeArr])].reverse()
 }
 

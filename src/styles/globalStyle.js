@@ -20,7 +20,7 @@ const globalStyles = createUseStyles((theme) => {
             zIndex: 99999
         },
         mainLayout:{
-            padding: '3rem 2rem',
+            padding: '2.5rem 2rem',
             marginTop: '65px',
             "& h1":{
                 fontSize: '2.5rem',

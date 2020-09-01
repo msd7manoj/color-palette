@@ -412,6 +412,3 @@ export const PALETTES_API_DATA = {
         ],
         error: "",
     };
-
-
-    

@@ -93,7 +93,7 @@ a.appMenuIcon {
 
 
 .mainLayout {
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     margin-top: 65px;
     h1 {
         font-size: 2.5rem;
@@ -648,10 +648,10 @@ body {
     ul {
         flex-wrap: wrap;
         li {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 40px;
             margin: 0.2rem;
-            border-radius: 10px;
+            border-radius: 3px;
             cursor: pointer;
             transition: all linear 0.2s;
             &:hover {
@@ -731,12 +731,13 @@ body {
     }
 }
 
+// ===========================================================
 
 .solidColorLists {
-    justify-content: center;
+    justify-content: space-between;
     li {
         width: 175px;
-        margin: 0 0.1rem 0.1rem;
+        margin: 0 0 8px;
         height: 95px;
         div {
             width: 100%;
@@ -745,4 +746,335 @@ body {
             cursor: pointer;
         }
     }
+}
+
+
+.paletteActionMenu {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 0 -5px 20px -15px #656565;
+    padding: 0.2rem 1rem;
+    ul {
+        display: flex;
+        li {
+            margin: 0 0.5rem;
+        }
+    }
+}
+
+
+.gradientCanvas {
+    background-image: linear-gradient(rgb(164, 63, 141) 0%, rgb(156, 8, 106) 100%);
+    // height: 450px;
+    height: 60vh;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    transition: all linear 0.3s;
+}
+.gradientCreatorSlider {
+    width: 100%;
+    height: 12px;
+    border-radius: 10px;
+    transition: all linear 0.3s;
+    position: relative;
+    margin-bottom: 50px;
+    .gradientCreatorHandle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        top: -8px;
+        border: 8px solid #efeee9;
+        &.activeHandle {
+            box-shadow: 0px 0px 3px 0px #747474;
+        }
+    }
+}
+
+.gradientOptions {
+    align-items: flex-start;
+    h3 {
+        color: #3f3f3f;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .gradientDegRotator, .gradientColorPicker {
+        padding: 0.5rem;
+    }
+    .gradientDegRotator {
+        display: flex;
+        padding: 0.5rem;
+        flex-grow: 1;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+
+
+.sliderTrack {
+    width: 100%;
+    height: 2px;
+    background: #000;
+    position: relative;
+    .sliderHandle {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: #ddd;
+        border-radius: 50%;
+        top: -15px;
+    }
+}
+
+.gradientColorsList {
+    flex-wrap: nowrap;
+    li {
+        flex-grow: 1;
+        padding: 0.2rem;
+        div {
+            width: 100%;
+            height: 50px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    }
+}
+
+.colorPicker {
+    width: 300px;
+    height: 250px;
+    border: 1px solid #ccc;
+    position: relative;
+    .colorHandle {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: red;
+        border-radius: 500px;
+    }
+}
+
+
+$rotatorWidth: 220px;
+$rotatorHeight: $rotatorWidth;
+$rotatorTrackSpacing: 30px;
+$rotatorInnnerWidth: $rotatorWidth - ( $rotatorTrackSpacing * 2 );
+$rotatorInnnerHeight: $rotatorInnnerWidth;
+$rotatorHandleWidth: 30px;
+$rotatorHandleHeight: $rotatorHandleWidth;
+$rotatorMarginTop: -($rotatorHandleWidth/2);
+.outerCircle {
+    position: relative;
+    width: $rotatorWidth;
+    height: $rotatorHeight;
+    border-radius: 50%;
+    background: #dadada;
+}
+
+.innerCircle {
+    position: absolute;
+    top: $rotatorTrackSpacing;
+    left: $rotatorTrackSpacing;
+    width: $rotatorInnnerWidth;
+    height: $rotatorInnnerHeight;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0px 0px 20px 3px #bdbdbd;
+    span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: 600;
+        color: #777;
+        text-align: center;
+        border-radius: 50%;
+        input {
+            background: transparent;
+            width: 70%;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #777;
+            border-radius: 5px;
+            border: 2px solid #dedede;
+            border: 0;
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.angleRotator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: $rotatorHandleHeight;
+    margin-top: $rotatorMarginTop;
+    width: 50%;
+    -webkit-transform-origin: center left;
+    -moz-transform-origin: center left;
+    -ms-transform-origin: center left;
+    -o-transform-origin: center left;
+    transform-origin: center left;
+}
+
+.angleDragger {
+    width: $rotatorHandleWidth;
+    height: $rotatorHandleHeight;
+    border-radius: 50%;
+    background: #fff;
+    margin: 0 0px 0 auto;
+    cursor: move;
+    background-image: -webkit-linear-gradient(top, #f7f7f7, #e7e7e7);
+    box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+}
+.customColorCodeSelector {
+    h3 {
+        padding-left: 0.8rem;
+    }
+}
+.codeSelector {
+    width: 70px;
+    .selectorDd {
+        width: 70px;
+    }
+}
+.selectorWrap {
+    position: relative;
+    .selectorLbl {
+        color: #727272;
+        font-weight: 600;
+        position: relative;
+        cursor: pointer;
+        padding: 0 0.8rem;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        i {
+            position: absolute;
+            right: 0;
+            top: 10px;
+            font-size: 0.8rem;
+        }
+    }
+    .selectorDd {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        background: #fff;
+        border: 2px solid #eaeaea;
+        border-radius: 3px;
+        li {
+            button {
+                display: block;
+                padding: 0.8rem;
+                color: #727272;
+                font-size: 1rem;
+                font-weight: 600;
+                position: relative;
+                border: 0;
+                background: #fff;
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                transition: all linear 0.3s;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    width: 2px;
+                    height: 100%;
+                    left: -2px;
+                    top: 0px;
+                    transition: all linear 0.3s;
+                }
+                &:hover {
+                    color: #a11ad4;
+                }
+                &:hover:before {
+                    background: #a11ad4;
+                }
+            }
+            &.selectedValue {
+                button {
+                    color: #a11ad4;
+                    &:before {
+                        background: #a11ad4;
+                    }
+                }
+            }
+        }
+    }
+}
+.colorCodeInput {
+    margin-left: 1.5rem;
+    width: 50%;
+    .rgbInputVal {
+        input {
+            width: 30%;
+        }
+    }
+}
+
+.typeSelector {
+    width: 160px;
+    .selectorDd {
+        width: 160px;
+    }
+}
+.inputWrap {
+    input {
+        border: 0;
+        border-bottom: 1px solid #888;
+        height: 30px;
+        font-weight: 600;
+        color: #727272;
+        width: 100%;
+        &:focus {
+            box-shadow: none;
+            border: 0;
+            border-bottom: 1px solid #888;
+        }
+    }
+}
+.gradientInputSec {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    .gradientInputOption {
+        flex-grow: 1;
+        padding: 0 1rem;
+        h3 {
+            padding: 0 .8rem;
+        }
+        .posInputOption {
+            padding: 0 .8rem;
+            
+        }
+        
+    }
+}
+
+.inputOptionForm {
+    position: relative;
+    button {
+        position: absolute;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        right: 15px;
+        top: 5px;
+        color: #a11ad4;
+        cursor: pointer;
+    }
+}
+.gradientGenerate {
+    justify-content: center;
 }
