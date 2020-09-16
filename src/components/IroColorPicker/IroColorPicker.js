@@ -12,16 +12,16 @@ const IroColorPicker = ({ onColorChange, color }) => {
     const render = useRenderCount('colorPicker')
     const [initiate, setInitiate] = useState(false)
     const colorPickerRef = useRef()
+    const colorPickerElRef = useRef()
     useEffect(()=> {
         setInitiate(true)
-        return () => {
-          setInitiate(false)
-        }
+        return () => { setInitiate(false) }
     },[color])
 
     useEffect(() => {
-      if( initiate ) {
-        const colorPicker = new iro.ColorPicker(colorPickerRef.current, {
+      //console.log('new iro.Color', new iro.Color())
+      if(initiate) {
+        colorPickerRef.current = new iro.ColorPicker(colorPickerElRef.current, {
           width: 280,
           color: color,
           layoutDirection: 'horizontal',
@@ -58,21 +58,49 @@ const IroColorPicker = ({ onColorChange, color }) => {
             }
           ]
         });
-  
-  
-        colorPicker.on('color:change', (color) => {
+
+        colorPickerRef.current.on('color:change', (color) => {
           if (onColorChange) onColorChange(color);
         });
+
       }
+      return () => {
+        
+      }
+
+
     }, [initiate])
 
 
-    
+    useEffect(()=> {
+      console.log('color--color--color', color)
+      if( colorPickerRef.current ) {
+        // colorPickerRef.current.setOptions({
+        //   color: color,
+        // })
+        // colorPickerRef.current.reset()
+        // colorPickerRef.current.on('color:init', (clr) => {
+        //   clr.set(color)
+        // })
+        // colorPickerRef.current.reset()
+        // colorPickerRef.current.setOptions({
+        //   color: color,
+        // })
+        // colorPickerRef.current.on('color:init', function(colorPicker) {
+        //   console.log('colorPicker:', colorPicker)
+        //   console.log('colorPickerRef:', colorPickerRef.current)
+        //   console.log('colorPicker === colorPickerRef.current', colorPicker === colorPickerRef.current)
+        //   colorPicker.set(color)
+        // })
+
+        colorPickerRef.current.setColors([color]);
+      }
+    },[color])
 
     return ( 
       <>
           <div className="mb-1 customColorPicker">
-            <div ref={colorPickerRef} id="colorPicker"></div>
+            <div ref={colorPickerElRef}></div>
           </div>
       </>
     );

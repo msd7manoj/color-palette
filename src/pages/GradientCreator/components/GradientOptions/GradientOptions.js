@@ -10,8 +10,10 @@ import { CREATE_GRADIENT_ACTION } from '../../gradientCreatorState/gradientActio
 import { getGradientBg } from '../../utils';
 import { useEffect } from 'react';
 import useRenderCount from '../../../../utils/useRenderCount';
-
-
+import useStyles from './styles';
+import globalStyles from '../../../../styles/globalStyle';
+import clsx from 'clsx';
+import { SketchPicker } from 'react-color';
 
 
 
@@ -19,25 +21,36 @@ const GradientOptions = () => {
 
     const { gradientList, gradientAngle, gradientType, sliderWidth, selectedColor, activeColor, activeColorPosition } = useContext(gradientStateContext)
     const [pickerColor, setPickerColor] = useState(activeColor)
-    const [draggerPosition, setDraggerPosition] = useState(parseInt(activeColorPosition))
-    
+    // const [draggerPosition, setDraggerPosition] = useState( parseInt(activeColorPosition) )
+    const [draggerPosition, setDraggerPosition] = useState( 0 )
+
+
     const dispatch = useContext(gradientDispatchContext)
     const render = useRenderCount('GradientOptions')
+    const classes = useStyles()
+    const globalClasses = globalStyles()
+
 
 
     useEffect(() => {
         onPickerColorChange()
     }, [pickerColor])
 
+    // useEffect(() => {
+    //     setDraggerPosition(parseInt(activeColorPosition))
+    // }, [activeColorPosition])
+
     useEffect(() => {
-        setDraggerPosition(parseInt(activeColorPosition))
-    }, [activeColorPosition])
+        if( gradientList.length !== 0 ) {
+            const draggerPost = gradientList.filter( gradient => gradient.isActive )
+            setDraggerPosition( draggerPost.length !== 0 ? parseInt( draggerPost[0].position ) : 0 )
+        }
+    }, [gradientList])
 
-
-    const getGradientDeg = (e) => {
+    const getGradientDeg = useCallback((e) => {
         dispatch(contextActionCreator(CREATE_GRADIENT_ACTION.GRADIENT_ANGLE, e))
         dispatch(contextActionCreator(CREATE_GRADIENT_ACTION.GRADIENT_CSS, getGradientBg(gradientList, e, gradientType)))
-    }
+    },[])
 
     
     const onColorChange = useCallback((color) => {
@@ -83,26 +96,26 @@ const GradientOptions = () => {
 
         e.preventDefault()
     }
-
     return ( 
-        <div className="gradientOptions dFlex">
-            <div className="gradientColorPicker">
-                <h3 className="mb-1">Pick a Color</h3>
+        <div className={clsx(globalClasses.dFlex, globalClasses["mb-1"], classes.gradientOptions)}>
+            <div className={classes.gradientColorPicker}>
+                <h3 className={globalClasses["mb-1"]}>Pick a Color</h3>
                 { selectedColor !== '' && ( <IroColorPicker
                 color={selectedColor}
                 onColorChange={ onColorChange } 
                 /> ) }
+                {/* <SketchPicker width={350} presetColors={[]} disableAlpha={ true } /> */}
             </div>
-            <div className="gradientDegRotator">
-                <h3 className="mb-1">Rotate Gradient</h3>
+            <div className={classes.gradientDegRotator}>
+                <h3 className={globalClasses["mb-1"]}>Rotate Gradient</h3>
                 <DegreeRotator
                 getGradientDeg={getGradientDeg} />
             </div>
 
-            <div className="dFlex mb-2 gradientInputSec">
-                <div className="gradientInputOption gradientColorOption">
-                    <h3 className="mb-1">Color Value</h3>
-                    <div className="dFlex">
+            <div className={clsx(globalClasses["mb-1"], globalClasses["dFlex"], classes.gradientInputSec)}>
+                <div className={clsx(classes.gradientInputOption, classes.gradientColorOption)}>
+                    <h3 className={clsx(globalClasses["mb-1"])}>Color Value</h3>
+                    <div className={clsx(globalClasses["dFlex"])}>
                         <SelectBox
                         width={80}
                         options={COLOR_CODE}
@@ -110,21 +123,21 @@ const GradientOptions = () => {
                         <ColorInput type="hex" hexValue={activeColor} />
                     </div>
                 </div>
-                <div className="gradientInputOption gradientTypeOption">
-                    <h3 className="mb-1">Type</h3>
-                    <div className="dFlex">
+                <div className={clsx(classes.gradientInputOption, classes.gradientTypeOption)}>
+                    <h3 className={globalClasses["mb-1"]}>Type</h3>
+                    <div className={globalClasses["dFlex"]}>
                         <SelectBox
-                        width={170}
+                        width={100}
                         options={GRADIENT_TYPE}
                         onChange={onChangeType} />
                     </div>
                 </div>
-                <div className="gradientInputOption gradientPosOption">
-                    <h3 className="mb-1">Position</h3>
-                    <form onSubmit={onSubmitPosition} className="inputWrap inputOptionForm posInputOption">
+                <div className={clsx(classes.gradientInputOption, classes.gradientPosOption)}>
+                    <h3 className={globalClasses["mb-1"]}>Position</h3>
+                    <form onSubmit={onSubmitPosition} className={ clsx(globalClasses.inputWrap, globalClasses.inputOptionForm, classes.posInputOption) }>
                         <input maxLength="3" onChange={onDraggerPosition} value={ draggerPosition } type="text" />
                         <button>
-                            <i class="fas fa-check"></i>
+                            <i class={clsx("fas", "fa-check")}></i>
                         </button>
                     </form>
                 </div>

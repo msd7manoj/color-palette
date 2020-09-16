@@ -8,8 +8,9 @@ import { useParams } from 'react-router-dom';
 import { contextActionCreator } from '../../../../utils/utils';
 import { CREATE_GRADIENT_ACTION } from '../../gradientCreatorState/gradientAction';
 import { DRAGABLE_HANDLE_WIDTH, DRAGABLE_HANDLE_HALFWIDTH } from '../../constants';
-import { getColorAndWeight } from '../../utils';
+import { getColorAndWeight, getGradientBg } from '../../utils';
 import useRenderCount from '../../../../utils/useRenderCount';
+import useStyles from './styles';
 
 
 const generateGradArr = (colorArr) => {
@@ -23,18 +24,6 @@ const generateGradArr = (colorArr) => {
     } )
 }
 
-const sortArrObjectByVal = (arr, key ) => {
-    return arr.sort((a, b) => (a[key] > b[key]) ? 1 : -1)
-}
-const getGradientBg = ( bg, rotate = 0, gradientType = 'linear-gradient' ) => {
-    let backgroundImage= [];
-    let deg = `${rotate}deg`
-    let clonedBg = bg.map(el => ({...el}) )
-    sortArrObjectByVal(clonedBg, 'position').forEach( color => {
-        backgroundImage.push(`${color.color} ${color.position}%`)
-    });
-    return `${gradientType}( ${deg}, ${backgroundImage.join(", ")})`;
-}
 
 
 
@@ -43,12 +32,11 @@ const GradientSlider = () => {
     const refContainer = useRef()
     const [width, setWidth] = useState(0)
     const [clientY, setClientY] = useState(0)
-    const [positionStatus, setPositionStatus] = useState('initiate')
-    const {gradientList, gradientAngle, gradientType} = useContext(gradientStateContext)
+    const { gradientList, gradientAngle, gradientType } = useContext(gradientStateContext)
     const dispatch = useContext(gradientDispatchContext)
     const { gradients } = useParams()
     const render = useRenderCount('GradientSlider')
-
+    const classes = useStyles()
 
     let removeDragger;
     useEffect(() => {
@@ -109,12 +97,12 @@ const GradientSlider = () => {
 
         dispatch( contextActionCreator( CREATE_GRADIENT_ACTION.ACTIVE_COLOR_POSITION, position ) )
         
-        console.log( 'positionss', position )
-        console.log( 'position', ( ( ( e.pageX - e.target.offsetLeft) - DRAGABLE_HANDLE_HALFWIDTH ) / width ) * 100 )
-        console.log( 'e.pageX',  e.pageX )
-        console.log( 'e.target.offsetLeft', e.target.offsetLeft )
-        console.log( 'positionX', ( position / 100 ) * ( width ) )
-        console.log( 'defaultPositionX', ( e.pageX - e.target.offsetLeft ) - DRAGABLE_HANDLE_HALFWIDTH )
+        // console.log( 'positionss', position )
+        // console.log( 'position', ( ( ( e.pageX - e.target.offsetLeft) - DRAGABLE_HANDLE_HALFWIDTH ) / width ) * 100 )
+        // console.log( 'e.pageX',  e.pageX )
+        // console.log( 'e.target.offsetLeft', e.target.offsetLeft )
+        // console.log( 'positionX', ( position / 100 ) * ( width ) )
+        // console.log( 'defaultPositionX', ( e.pageX - e.target.offsetLeft ) - DRAGABLE_HANDLE_HALFWIDTH )
     }
 
     const onDragClick = (e) => {
@@ -141,7 +129,11 @@ const GradientSlider = () => {
 
     const handleDrag = (ind) => (e, ui) => {
         e.stopPropagation()
-        const position = ( ( ui.x + ( ui.x === 0 ? 0 : DRAGABLE_HANDLE_WIDTH ) ) / width) * 100
+        // const position = ( ( ui.x + ( ui.x === 0 ? 0 : ( ui.x === 100 ? DRAGABLE_HANDLE_WIDTH : 0 ) ) ) / width) * 100
+        console.log(ui.x)
+        const sliderEndPoint = Math.ceil(width) - DRAGABLE_HANDLE_WIDTH;
+        console.log('sliderEndPoint', sliderEndPoint)
+        const position = ( ( ui.x + ( ui.x === 0 ? 0 : ( ui.x ===  sliderEndPoint ? DRAGABLE_HANDLE_WIDTH : 0 ) ) ) / width) * 100
         const updatedGradientList = gradientList.map( ( el, index) => {
             return index === ind ? {
                 ...el,
@@ -152,14 +144,16 @@ const GradientSlider = () => {
             } : { ...el  }
         } )
 
-        dispatch( contextActionCreator( CREATE_GRADIENT_ACTION.ACTIVE_COLOR_POSITION, position ) )
+        
 
-        dispatch( contextActionCreator(CREATE_GRADIENT_ACTION.UPDATE_GRADIENT, updatedGradientList ) )
+        dispatch( contextActionCreator( CREATE_GRADIENT_ACTION.UPDATE_GRADIENT, updatedGradientList ) )
 
-        const selectedColor = updatedGradientList.filter( el => el.isActive )[0]['color']
-        dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.SELECTED_COLOR, selectedColor) )
+        // dispatch( contextActionCreator( CREATE_GRADIENT_ACTION.ACTIVE_COLOR_POSITION, position ) )
 
-        dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.GRADIENT_CSS, getGradientBg(updatedGradientList, gradientAngle, gradientType)))
+        // const selectedColor = updatedGradientList.filter( el => el.isActive )[0]['color']
+        // dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.SELECTED_COLOR, selectedColor) )
+
+        // dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.GRADIENT_CSS, getGradientBg(updatedGradientList, gradientAngle, gradientType)))
     }
 
 
@@ -169,7 +163,7 @@ const GradientSlider = () => {
             removeDragger = setTimeout(() => {
                 const filteredList = gradientList.filter( (el, index) =>  index !== ind )
                 dispatch( contextActionCreator(CREATE_GRADIENT_ACTION.UPDATE_GRADIENT, filteredList ) )
-                dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.GRADIENT_CSS, getGradientBg(filteredList, gradientAngle, gradientType)))
+                // dispatch(contextActionCreator( CREATE_GRADIENT_ACTION.GRADIENT_CSS, getGradientBg(filteredList, gradientAngle, gradientType)))
             },0)
         }
     }
@@ -180,7 +174,7 @@ const GradientSlider = () => {
         <div ref={refContainer}
         style={{ backgroundImage: getGradientBg( gradientList, 45 ) }}
         onClick={ addColorHandler }
-        className="gradientCreatorSlider">
+        className={classes.gradientCreatorSlider}>
             { gradientList.map( (el, index) => {
                 return (
                     <Draggable
@@ -189,13 +183,12 @@ const GradientSlider = () => {
                         onDrag={handleDrag(index)}
                         onStop={handleStop(index)}
                         position={ { x: el.defaultPositionX, y: 0 } }
-                        // position = { { x: getDefaultPos( el.position, index + 1 ), y: 0 } }
                         axis="x">
                             <div 
                             dataInd={index}
                             style={{backgroundColor: el.color}}
                             onClick={ onDragClick }
-                            className={ clsx( 'gradientCreatorHandle', el.isActive ? 'activeHandle' : '' ) }>
+                            className={ clsx( classes.gradientCreatorHandle, el.isActive ? classes.activeHandle : '' ) }>
                                 
                             </div>
                     </Draggable>
@@ -206,4 +199,4 @@ const GradientSlider = () => {
     );
 }
  
-export default GradientSlider;
+export default React.memo(GradientSlider);

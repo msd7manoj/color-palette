@@ -53,6 +53,34 @@ const globalStyles = createUseStyles((theme) => {
         },
         'posRelatvie': {
             position: "relative"
+        },
+        inputWrap: {
+            '& input': {
+                border: 0,
+                borderBottom: '1px solid #888',
+                height: '30px',
+                fontWeight: 600,
+                color: theme.text.secondaryColor,
+                width: '100%',
+                '&:focus': {
+                    boxShadow: 'none',
+                    border: 0,
+                    borderBottom: '1px solid #888'
+                }
+            }
+        },
+        inputOptionForm: {
+            position: 'relative',
+            '& button': {
+                position: 'absolute',
+                border: 0,
+                padding: 0,
+                background: 'transparent',
+                right: '15px',
+                top: '5px',
+                color: '#a11ad4',
+                cursor: 'pointer',
+            }
         }
     }
 })

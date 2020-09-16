@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
+import useStyles from './styles';
 
 const SelectBox = ({defaultLabel, options, onChange, width }) => {
 
@@ -7,7 +8,7 @@ const SelectBox = ({defaultLabel, options, onChange, width }) => {
     const [selectedLbl, setSelectedLbl] = useState(defaultLabel)
     const [selectedVal, setSelectedVal] = useState(options ? options[0].value : '')
     const ddRef = useRef(null)
-
+    const classes = useStyles({width})
     const handleClickOutside = event => {
         if (ddRef.current && !ddRef.current.contains(event.target)) {
             setToggleDropDown(false);
@@ -35,16 +36,16 @@ const SelectBox = ({defaultLabel, options, onChange, width }) => {
     }
 
     return ( 
-        <div ref={ddRef} style={{width: width}} className="codeSelector selectorWrap">
-            <div onClick={onToggleDropDown} className="selectorLbl">
+        <div ref={ddRef} className={classes.selectorWrap}>
+            <div onClick={onToggleDropDown} className={classes.selectorLbl}>
                 { !!selectedLbl ? selectedLbl : options[0].label} 
                 <i class={clsx('fas', toggleDropDown ? 'fa-chevron-down' : 'fa-chevron-up')}></i>
             </div>
             { toggleDropDown && (
-                <ul style={{width: width}} className="selectorDd">
+                <ul style={{width: width}} className={classes.selectorDd}>
                     { options.map( (option, index ) => {
                         return (
-                            <li className={clsx(selectedVal === option.value && 'selectedValue')} key={option.label}>
+                            <li className={clsx(selectedVal === option.value && classes.selectedValue)} key={option.label}>
                                 <button data-value={option.value} onClick={onChangeOption(option, index)}>     
                                     {option.label}
                                 </button>

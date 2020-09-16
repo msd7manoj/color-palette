@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { gradientStateContext } from '../../gradientCreatorState/gradientContext';
+import useStyles from './styles';
+import { getGradientBg } from '../../utils';
 
 const GradientCanvas = () => {
-    const { gradientCss } = useContext(gradientStateContext)
+    const { gradientList, gradientAngle, gradientType, gradientCss } = useContext(gradientStateContext)
     
-    return ( 
-        <div className="gradientCanvas" style={{ backgroundImage: gradientCss }}>
+    const { gradientCanvas } = useStyles()
 
+
+    return ( 
+        <div className={gradientCanvas} style={{ backgroundImage: getGradientBg(gradientList, gradientAngle, gradientType) }}>
         </div>
     );
 }
